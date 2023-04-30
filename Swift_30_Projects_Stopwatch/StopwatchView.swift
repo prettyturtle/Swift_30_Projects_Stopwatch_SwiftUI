@@ -6,8 +6,19 @@
 //
 
 import SwiftUI
+import Combine
 
 struct StopwatchView: View {
+    
+    @State var isPlay: Bool = false
+    
+    @State var lapLabel: String = "Lap"
+    @State var startLabel: String = "Start"
+    
+    @State var mainTimer: Timer?
+    
+    @State var mainMilliSec = 0
+    
     var body: some View {
         
         NavigationView {
@@ -21,12 +32,12 @@ struct StopwatchView: View {
                         Spacer()
                         
                         Text("00:00.00")
-                            .font(.system(size: 18))
+                            .font(.system(size: 18, design: .monospaced))
                         
                     } // HStack
                     
-                    Text("00:00.00")
-                        .font(.system(size: 48, weight: .medium))
+                    Text(mainMilliSec.milliToTime)
+                        .font(.system(size: 48, weight: .medium, design: .monospaced))
                     
                     Spacer()
                         .frame(height: 48)
@@ -36,7 +47,7 @@ struct StopwatchView: View {
                         Button {
                             print("didTapLapButton")
                         } label: {
-                            Text("Lap")
+                            Text(lapLabel)
                                 .font(.system(size: 18))
                                 .foregroundColor(.black)
                         }
@@ -44,11 +55,24 @@ struct StopwatchView: View {
                         Spacer()
                         
                         Button {
-                            print("didTapStartButton")
+                            isPlay.toggle()
+                            
+                            startLabel = isPlay ? "Stop" : "Start"
+                            
+                            if isPlay {
+                                mainTimer = Timer.scheduledTimer(
+                                    withTimeInterval: 0.01,
+                                    repeats: true
+                                ) { _ in
+                                    mainMilliSec += 1
+                                }
+                            } else {
+                                mainTimer?.invalidate()
+                            }
                         } label: {
-                            Text("Start")
+                            Text(startLabel)
                                 .font(.system(size: 18))
-                                .foregroundColor(.red)
+                                .foregroundColor(isPlay ? .red : .green)
                         }
                         
                     } // HStack
