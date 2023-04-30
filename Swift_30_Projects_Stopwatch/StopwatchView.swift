@@ -17,7 +17,11 @@ struct StopwatchView: View {
     
     @State var mainTimer: Timer?
     
-    @State var mainMilliSec = 0
+    @State var mainMilliSec: Int = 0
+    
+    @State var laps: [Lap] = []
+    
+    @State var currentLap: Int = 1
     
     var body: some View {
         
@@ -45,12 +49,27 @@ struct StopwatchView: View {
                     HStack {
                         
                         Button {
-                            print("didTapLapButton")
+                            
+                            if isPlay {
+                                let lap = Lap(id: currentLap, millisec: mainMilliSec)
+                                
+                                laps = [lap] + laps
+                                
+                                currentLap += 1
+                            } else {
+                                currentLap = 0
+                                mainMilliSec = 0
+                                lapLabel = "Lap"
+                                mainTimer = nil
+                                laps = []
+                            }
+                            
                         } label: {
                             Text(lapLabel)
                                 .font(.system(size: 18))
-                                .foregroundColor(.black)
+                                .foregroundColor(mainMilliSec == 0 ? .gray : .black)
                         }
+                        .disabled(mainMilliSec == 0)
                         
                         Spacer()
                         
@@ -60,6 +79,7 @@ struct StopwatchView: View {
                             startLabel = isPlay ? "Stop" : "Start"
                             
                             if isPlay {
+                                lapLabel = "Lap"
                                 mainTimer = Timer.scheduledTimer(
                                     withTimeInterval: 0.01,
                                     repeats: true
@@ -67,6 +87,7 @@ struct StopwatchView: View {
                                     mainMilliSec += 1
                                 }
                             } else {
+                                lapLabel = "Reset"
                                 mainTimer?.invalidate()
                             }
                         } label: {
@@ -84,17 +105,17 @@ struct StopwatchView: View {
                 
                 Spacer(minLength: 48)
                 
-                List((0..<5).reversed(), id: \.self) { i in
+                List($laps, id: \.self) { lap in
                     
                     HStack {
                         
-                        Text("Lap \(i + 1)")
+                        Text("Lap \(lap.wrappedValue.id)")
                             .font(.system(size: 18))
                         
                         Spacer()
                         
-                        Text("00:00.00")
-                            .font(.system(size: 18))
+                        Text(lap.wrappedValue.millisec.milliToTime)
+                            .font(.system(size: 18, design: .monospaced))
                         
                     } // HStack
                     .padding()
