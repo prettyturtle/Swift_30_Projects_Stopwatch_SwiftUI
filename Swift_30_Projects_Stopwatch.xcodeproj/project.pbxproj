@@ -14,6 +14,7 @@
 		6BDB3BB429FEC10100B8EAA6 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDB3BB329FEC10100B8EAA6 /* Int+.swift */; };
 		6BDB3BB629FEC14900B8EAA6 /* Lap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDB3BB529FEC14900B8EAA6 /* Lap.swift */; };
 		6BDB3BB829FEC89B00B8EAA6 /* LapListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDB3BB729FEC89B00B8EAA6 /* LapListCell.swift */; };
+		6BDB3BBA29FEC93500B8EAA6 /* StopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDB3BB929FEC93500B8EAA6 /* StopwatchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		6BDB3BB329FEC10100B8EAA6 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		6BDB3BB529FEC14900B8EAA6 /* Lap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lap.swift; sourceTree = "<group>"; };
 		6BDB3BB729FEC89B00B8EAA6 /* LapListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapListCell.swift; sourceTree = "<group>"; };
+		6BDB3BB929FEC93500B8EAA6 /* StopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			children = (
 				6B0E732129FE521400DC39CC /* Swift_30_Projects_StopwatchApp.swift */,
 				6B0E732329FE521400DC39CC /* StopwatchView.swift */,
+				6BDB3BB929FEC93500B8EAA6 /* StopwatchViewModel.swift */,
 				6BDB3BB729FEC89B00B8EAA6 /* LapListCell.swift */,
 				6BDB3BB529FEC14900B8EAA6 /* Lap.swift */,
 				6BDB3BB329FEC10100B8EAA6 /* Int+.swift */,
@@ -148,6 +151,7 @@
 			files = (
 				6B0E732429FE521400DC39CC /* StopwatchView.swift in Sources */,
 				6BDB3BB629FEC14900B8EAA6 /* Lap.swift in Sources */,
+				6BDB3BBA29FEC93500B8EAA6 /* StopwatchViewModel.swift in Sources */,
 				6B0E732229FE521400DC39CC /* Swift_30_Projects_StopwatchApp.swift in Sources */,
 				6BDB3BB429FEC10100B8EAA6 /* Int+.swift in Sources */,
 				6BDB3BB829FEC89B00B8EAA6 /* LapListCell.swift in Sources */,

@@ -11,7 +11,8 @@ import SwiftUI
 struct Swift_30_Projects_StopwatchApp: App {
     var body: some Scene {
         WindowGroup {
-            StopwatchView()
+            let stopwatchViewModel = StopwatchViewModel()
+            StopwatchView(viewModel: stopwatchViewModel)
         }
     }
 }
