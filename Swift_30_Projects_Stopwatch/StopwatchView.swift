@@ -18,6 +18,7 @@ struct StopwatchView: View {
     @State var mainTimer: Timer?
     
     @State var mainMilliSec: Int = 0
+    @State var subMilliSec: Int = 0
     
     @State var laps: [Lap] = []
     
@@ -35,7 +36,7 @@ struct StopwatchView: View {
                         
                         Spacer()
                         
-                        Text("00:00.00")
+                        Text(subMilliSec.milliToTime)
                             .font(.system(size: 18, design: .monospaced))
                         
                     } // HStack
@@ -56,9 +57,11 @@ struct StopwatchView: View {
                                 laps = [lap] + laps
                                 
                                 currentLap += 1
+                                subMilliSec = 0
                             } else {
                                 currentLap = 0
                                 mainMilliSec = 0
+                                subMilliSec = 0
                                 lapLabel = "Lap"
                                 mainTimer = nil
                                 laps = []
@@ -85,6 +88,7 @@ struct StopwatchView: View {
                                     repeats: true
                                 ) { _ in
                                     mainMilliSec += 1
+                                    subMilliSec += 1
                                 }
                             } else {
                                 lapLabel = "Reset"
