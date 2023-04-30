@@ -111,19 +111,7 @@ struct StopwatchView: View {
                 
                 List($laps, id: \.self) { lap in
                     
-                    HStack {
-                        
-                        Text("Lap \(lap.wrappedValue.id)")
-                            .font(.system(size: 18))
-                        
-                        Spacer()
-                        
-                        Text(lap.wrappedValue.millisec.milliToTime)
-                            .font(.system(size: 18, design: .monospaced))
-                        
-                    } // HStack
-                    .padding()
-                    .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    LapListCell(lap: lap)
                     
                 } // List
                 .listStyle(.plain)
